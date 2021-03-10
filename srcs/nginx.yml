@@ -42,6 +42,3 @@ spec:
           containerPort: 80
         - name: https
           containerPort: 443
-        env:
-        - name: NGINX_IP
-          value: ${MINI_IP}
