@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb-service:8086
+    database: "influxdb"
+    basicAuth: true
+    basicAuthUser: "${AUTH_USER}"
+    basicAuthPassword: "${AUTH_PASSWORD}"
+    editable: true

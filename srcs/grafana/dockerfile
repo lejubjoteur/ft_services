@@ -1,0 +1,26 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/02/05 16:53:25 by user42            #+#    #+#              #
+#    Updated: 2021/02/22 16:41:17 by user42           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FROM	alpine:latest
+
+RUN		apk update && apk add --no-cache grafana
+
+COPY 	./run.sh .
+RUN 	chmod +x ./run.sh
+
+COPY	./connect.yml /usr/share/grafana/conf/provisioning/datasources/
+COPY	./dashboard.yml /usr/share/grafana/conf/provisioning/dashboards/
+COPY	./dashboard.json /usr/share/grafana/conf/provisioning/dashboards/
+
+EXPOSE	3000
+
+CMD [ "./run.sh" ]
